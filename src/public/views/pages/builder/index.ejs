@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <%- include('./includes/head.ejs') %>
+
+  <!-- BEGIN: Body-->
+
+  <body
+    class="vertical-layout vertical-menu-modern navbar-floating footer-static"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col=""
+  >
+    <%- include('../../includes/header.ejs') %> <%- include('../../includes/main-menu.ejs') %>
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row"></div>
+        <div class="content-body">
+          <h3>Build Your Application</h3>
+          <p>Each category (Basic, Professional, and Business) includes the four predefined roles shown below.</p>
+          <!-- Vertical Wizard -->
+          <section class="vertical-wizard">
+            <div class="bs-stepper vertical vertical-wizard-example">
+              <div class="bs-stepper-header">
+                <div
+                  class="step"
+                  data-target="#account-details-vertical"
+                  role="tab"
+                  id="account-details-vertical-trigger"
+                >
+                  <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box">1</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Build Details</span>
+                      <span class="bs-stepper-subtitle">Setup Build Details</span>
+                    </span>
+                  </button>
+                </div>
+                <div class="step" data-target="#personal-info-vertical" role="tab" id="personal-info-vertical-trigger">
+                  <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box">2</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Version Info</span>
+                      <span class="bs-stepper-subtitle">Add Version Info</span>
+                    </span>
+                  </button>
+                </div>
+                <div class="step" data-target="#address-step-vertical" role="tab" id="address-step-vertical-trigger">
+                  <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box">3</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Release Options</span>
+                      <span class="bs-stepper-subtitle">Setup Extra Option</span>
+                    </span>
+                  </button>
+                </div>
+                <!-- <div class="step" data-target="#social-links-vertical" role="tab" id="social-links-vertical-trigger">
+                  <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box">4</span>
+                    <span class="bs-stepper-label">
+                      <span class="bs-stepper-title">Social Links</span>
+                      <span class="bs-stepper-subtitle">Add Social Links</span>
+                    </span>
+                  </button>
+                </div> -->
+              </div>
+              <div class="bs-stepper-content">
+                <form id="myForm" method="post" action="/v1/build/create">
+                  <input type="hidden" value="<%= gitbranch %>" name="gitbranch" />
+                  <div
+                    id="account-details-vertical"
+                    class="content"
+                    role="tabpanel"
+                    aria-labelledby="account-details-vertical-trigger"
+                  >
+                    <div class="content-header">
+                      <h5 class="mb-0">Build Details</h5>
+                      <small class="text-muted">Enter Your Build Details.</small>
+                    </div>
+                    <div class="row">
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-username">Title</label>
+                        <input
+                          type="text"
+                          id="vertical-username"
+                          class="form-control"
+                          placeholder="Title"
+                          name="title"
+                          value="<%= title %>"
+                        />
+                      </div>
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-email">Type</label>
+                        <select class="form-select" id="basicSelect" name="type">
+                          <option value="Release">Release [Production]</option>
+                          <option value="Beta">Release [Development (Beta)]</option>
+                          <option selected value="Alpha">Development (Alpha)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-1 form-password-toggle col-md-12">
+                        <label class="form-label" for="vertical-password">Description</label>
+                        <textarea
+                          class="form-control"
+                          id="exampleFormControlTextarea1"
+                          rows="3"
+                          placeholder="Textarea"
+                          name="description"
+                        >
+<%= description %> </textarea
+                        >
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between" onclick="return false">
+                      <button class="btn btn-outline-secondary btn-prev" disabled>
+                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                      </button>
+                      <button class="btn btn-primary btn-next" onclick="return false">
+                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    id="personal-info-vertical"
+                    class="content"
+                    role="tabpanel"
+                    aria-labelledby="personal-info-vertical-trigger"
+                  >
+                    <div class="content-header">
+                      <h5 class="mb-0">Version Info</h5>
+                      <small>Enter Your Version Info.</small>
+                    </div>
+                    <div class="row">
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-first-name">Version Type</label>
+                        <select class="form-select" id="basicSelect" name="versionType">
+                          <option value="Super Major Feature">Super Major Feature</option>
+                          <option value="Major Feature">Major Feature</option>
+                          <option value="Simple Feature">Simple Feature</option>
+                          <option value="Hotfix">Hotfix</option>
+                          <option selected value="Simple Build">Simple Build</option>
+                        </select>
+                      </div>
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-last-name">Last Version Number</label>
+                        <input
+                          type="text"
+                          readonly
+                          id="vertical-last-name"
+                          class="form-control"
+                          value="<%= lastVersionNumber %>"
+                          name="lastVersionNumber"
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-country">Build Name</label>
+                        <input
+                          type="text"
+                          id="vertical-username"
+                          class="form-control"
+                          placeholder="Build Name"
+                          value="<%= buildName %>"
+                          name="buildName"
+                        />
+                      </div>
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-language">Last Build Number</label>
+                        <input
+                          type="text"
+                          readonly
+                          id="vertical-last-name"
+                          class="form-control"
+                          value="<%= lastBuildNumber %>"
+                          name="lastBuildNumber"
+                        />
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between" onclick="return false">
+                      <button class="btn btn-primary btn-prev">
+                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                      </button>
+                      <button class="btn btn-primary btn-next">
+                        <span class="align-middle d-sm-inline-block d-none" onclick="return false">Next</span>
+                        <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    id="address-step-vertical"
+                    class="content"
+                    role="tabpanel"
+                    aria-labelledby="address-step-vertical-trigger"
+                  >
+                    <div class="content-header">
+                      <h5 class="mb-0">Release Options</h5>
+                      <small>Setup Extra Option.</small>
+                    </div>
+                    <div class="row">
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-address">Quantity</label>
+
+                        <div class="input-group">
+                          <input type="number" class="touchspin" value="1" min="1" name="quantity" />
+                        </div>
+                      </div>
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="vertical-landmark">Upload To Google Drive</label>
+                        <div class="form-check form-check-primary form-switch">
+                          <input type="checkbox" class="form-check-input" id="customSwitch3" checked />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="pincode2">Git : Add & Commit</label>
+                        <div class="form-check form-check-primary form-switch">
+                          <input type="checkbox" class="form-check-input" id="customSwitch4" checked />
+                        </div>
+                      </div>
+                      <div class="mb-1 col-md-6">
+                        <label class="form-label" for="city2">Git Message</label>
+                        <input type="text" id="city2" class="form-control" placeholder="Message" />
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                      <button class="btn btn-primary btn-prev" onclick="return false">
+                        <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                      </button>
+                      <button class="btn btn-success btn-submit">Submit</button>
+                    </div>
+                  </div>
+                </form>
+                <!-- <div
+                  id="social-links-vertical"
+                  class="content"
+                  role="tabpanel"
+                  aria-labelledby="social-links-vertical-trigger"
+                >
+                  <div class="content-header">
+                    <h5 class="mb-0">Social Links</h5>
+                    <small>Enter Your Social Links.</small>
+                  </div>
+                  <div class="row">
+                    <div class="mb-1 col-md-6">
+                      <label class="form-label" for="vertical-twitter">Twitter</label>
+                      <input
+                        type="text"
+                        id="vertical-twitter"
+                        class="form-control"
+                        placeholder="https://twitter.com/abc"
+                      />
+                    </div>
+                    <div class="mb-1 col-md-6">
+                      <label class="form-label" for="vertical-facebook">Facebook</label>
+                      <input
+                        type="text"
+                        id="vertical-facebook"
+                        class="form-control"
+                        placeholder="https://facebook.com/abc"
+                      />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="mb-1 col-md-6">
+                      <label class="form-label" for="vertical-google">Google+</label>
+                      <input
+                        type="text"
+                        id="vertical-google"
+                        class="form-control"
+                        placeholder="https://plus.google.com/abc"
+                      />
+                    </div>
+                    <div class="mb-1 col-md-6">
+                      <label class="form-label" for="vertical-linkedin">Linkedin</label>
+                      <input
+                        type="text"
+                        id="vertical-linkedin"
+                        class="form-control"
+                        placeholder="https://linkedin.com/abc"
+                      />
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary btn-prev">
+                      <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
+                      <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                    </button>
+                    <button class="btn btn-success btn-submit">Submit</button>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </section>
+          <!-- /Vertical Wizard -->
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
+
+    <%- include('../../partials/footer.ejs') %> <%- include('../../partials/scripts.ejs') %>
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="/vendors/js/forms/wizard/bs-stepper.min.js"></script>
+    <script src="/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Page JS-->
+
+    <!-- <script src="/js/scripts/forms/form-tooltip-valid.js"></script> -->
+    <script src="/js/scripts/forms/form-number-input.js"></script>
+    <script src="/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
+    <script src="/js/scripts/forms/form-wizard.js"></script>
+    <!-- END: Page JS-->
+    <script>
+      $(window).on('load', function () {
+        if (feather) {
+          feather.replace({
+            width: 14,
+            height: 14,
+          });
+        }
+      });
+    </script>
+  </body>
+  <!-- END: Body-->
+</html>

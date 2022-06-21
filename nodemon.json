@@ -1,0 +1,3 @@
+{
+  "ignore": ["*.json", "./build/*", "./project/*", "/playground.js", "*.md"]
+}

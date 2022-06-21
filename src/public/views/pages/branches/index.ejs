@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <%- include('../../partials/head.ejs') %>
+
+  <!-- BEGIN: Body-->
+
+  <body
+    class="vertical-layout vertical-menu-modern navbar-floating footer-static"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col=""
+  >
+    <%- include('../../includes/header.ejs') %> <%- include('../../includes/main-menu.ejs') %>
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row"></div>
+        <div class="content-body">
+          <h3>Permissions List</h3>
+          <p>Each category (Basic, Professional, and Business) includes the four predefined roles shown below.</p>
+
+          <!-- Basic Tables start -->
+          <div class="row" id="basic-table">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Table Basic</h4>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    Using the most basic table Leanne Grahamup, here’s how <code>.table</code>-based tables look in
+                    Bootstrap. You can use any example of below table for your table and it can be use with any type of
+                    bootstrap tables.
+                  </p>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Branch Name</th>
+                        <th>Full Name</th>
+                        <th>Is Current</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for (let branch of branches){ %>
+                      <tr>
+                        <td>
+                          <img src="/images/icons/react.svg" class="me-75" height="20" width="20" alt="React" />
+                          <span class="fw-bold"><%= branch.id %></span>
+                        </td>
+                        <td><%= branch.name %></td>
+                        <td><%= branch.fullName %></td>
+                        <td>
+                          <% if(branch.isCurrent === true) {%>
+                          <span class="badge rounded-pill badge-light-success me-1">Target</span>
+                          <% }else{ %>
+                          <!-- <span class="badge rounded-pill badge-light-success me-1">Completed</span> -->
+                          <% } %>
+                        </td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Basic Tables end -->
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
+
+    <%- include('../../partials/footer.ejs') %> <%- include('../../partials/scripts.ejs') %> <%-
+    include('./includes/scripts.ejs') %>
+
+    <script>
+      $(window).on('load', function () {
+        if (feather) {
+          feather.replace({
+            width: 14,
+            height: 14,
+          });
+        }
+      });
+    </script>
+  </body>
+  <!-- END: Body-->
+</html>

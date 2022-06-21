@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+  <%- include('../../partials/head.ejs') %>
+
+  <!-- BEGIN: Body-->
+
+  <body
+    class="vertical-layout vertical-menu-modern navbar-floating footer-static"
+    data-open="click"
+    data-menu="vertical-menu-modern"
+    data-col=""
+  >
+    <%- include('../../includes/header.ejs') %> <%- include('../../includes/main-menu.ejs') %>
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper container-xxl p-0">
+        <div class="content-header row"></div>
+        <div class="content-body">
+          <h3>Build Your Application</h3>
+          <p>Each category (Basic, Professional, and Business) includes the four predefined roles shown below.</p>
+
+          <!-- Basic Tables start -->
+          <div class="row" id="basic-table">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Build History</h4>
+                  <a class="btn btn-icon btn-primary" href="/v1/build/create">
+                    <i data-feather="plus" class="me-25"></i>
+                    <span>Create New Build</span>
+                  </a>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    Using the most basic table Leanne Grahamup, here’s how <code>.table</code>-based tables look in
+                    Bootstrap. You can use any example of below table for your table and it can be use with any type of
+                    bootstrap tables.
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th style="max-width: 80px">Type</th>
+                          <th>Git Branch</th>
+                          <th style="max-width: 120px">Version Number</th>
+                          <th style="max-width: 120px">Build Number</th>
+                          <th style="max-width: 150px">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (let appBuild of appBuilds){ %>
+                        <tr>
+                          <td><%= appBuild.title %></td>
+                          <td style="max-width: 60px"><%= appBuild.type %></td>
+                          <td><%= appBuild.gitbranch %></td>
+                          <td><%= appBuild.versionNumber %></td>
+                          <td style="max-width: 100px"><%= appBuild.buildNumber %></td>
+                          <td style="max-width: 150px">
+                            <a href="/v1/build/extrabuild?id=<%= appBuild.id %>" class="btn btn-sm hide-arrow py-0">
+                              <i data-feather="rotate-cw"></i>
+                            </a>
+                            <!-- <a href="" class="btn btn-sm hide-arrow py-0">
+                              <i data-feather="eye"></i>
+                            </a> -->
+                          </td>
+                        </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                  <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-end mt-3">
+                      <li class="page-item <%= parseInt(offsetPage)-1 === 0 && 'disabled' %>">
+                        <a
+                          class="page-link"
+                          href="/v1/build?page=<%= offsetPage-1 %>"
+                          tabindex="-1"
+                          aria-disabled="true"
+                          >Previous</a
+                        >
+                      </li>
+
+                      <% for (let index = 1; index <= lastPage; index++){ %>
+                      <li class="page-item <%= index === parseInt(offsetPage) && 'active' %>">
+                        <a class="page-link" href="/v1/build?page=<%= index %>"><%= index %></a>
+                      </li>
+
+                      <% }%>
+                      <li class="page-item <%= parseInt(offsetPage) === lastPage && 'disabled' %>">
+                        <a class="page-link" href="/v1/build?page=<%= parseInt(offsetPage)+1 %>">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Basic Tables end -->
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
+
+    <%- include('../../partials/footer.ejs') %> <%- include('../../partials/scripts.ejs') %>
+
+    <script>
+      $(window).on('load', function () {
+        if (feather) {
+          feather.replace({
+            width: 14,
+            height: 14,
+          });
+        }
+      });
+    </script>
+  </body>
+  <!-- END: Body-->
+</html>

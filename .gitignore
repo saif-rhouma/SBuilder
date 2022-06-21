@@ -1,0 +1,8 @@
+/node_modules
+/test
+/project/*/
+/build/*.exe
+/dump
+/dist
+playground.*
+.env
