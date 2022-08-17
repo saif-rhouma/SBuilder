@@ -1,3 +1,8 @@
+### Please Read This :
+
+This's Avaxia Company Project.
+Avaxia Has Give Me The Approval To Publish This Project With Some Modification.
+
 # SBuilder - Project
 
 ## Launcher Builder For Creating A New Build For Launcher App

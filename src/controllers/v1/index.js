@@ -1,14 +1,28 @@
-import { Router } from 'express';
-import testRouter from './fntest';
-import homeRouter from './home';
-import buildRouter from './build';
-import branchesRouter from './branches';
+////! Apis
+import createAppBuild from './createAppBuild';
+import createBuildKey from './createBuildKey';
+import getAllAppBuild from './getAllAppBuild';
+import getAllBranches from './getAllBranches';
+import getCurrentBranch from './getCurrentBranch';
 
-const router = Router();
+////! Views
+import viewBranches from './viewBranches';
+import viewBuilds from './viewBuilds';
+import viewCreateBuild from './viewCreateBuild';
+import viewExtraBuild from './viewExtraBuild';
+import viewHome from './viewHome';
+import viewPostCreateBuild from './viewPostCreateBuild';
 
-router.use(testRouter);
-router.use(homeRouter);
-router.use(buildRouter);
-router.use(branchesRouter);
-
-export default router;
+export default {
+  createAppBuild,
+  createBuildKey,
+  getAllAppBuild,
+  getAllBranches,
+  getCurrentBranch,
+  viewBranches,
+  viewBuilds,
+  viewCreateBuild,
+  viewExtraBuild,
+  viewHome,
+  viewPostCreateBuild,
+};

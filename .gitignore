@@ -4,5 +4,6 @@
 /build/*.exe
 /dump
 /dist
+/src/keys/*
 playground.*
 .env

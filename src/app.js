@@ -5,7 +5,7 @@ import logger from 'morgan';
 import cors from 'cors';
 import flash from 'express-flash';
 import errorsMiddleware from './middlewares/errors';
-import { v1Routes } from './controllers';
+import router from './routes';
 import session from 'express-session';
 
 class App {
@@ -24,7 +24,7 @@ class App {
     this.setRoutes();
   }
   setRoutes() {
-    this.app.use('/v1', v1Routes);
+    this.app.use(router);
     this.app.use(errorsMiddleware);
   }
   getApp() {
