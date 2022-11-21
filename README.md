@@ -1,6 +1,6 @@
 ### Please Read This :
 
-This's Avaxia Company Project.
+This's Avaxia Company Proof of concept (PoC) Project.
 Avaxia Has Give Me The Approval To Publish This Project With Some Modification.
 
 # SBuilder - Project
